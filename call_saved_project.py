@@ -40,7 +40,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
 
 list(X_train.columns)[0:15]
-#Se realiza el primer entrenamiento utilizando 2 de los 3 datasets de lluvia
+#Definen las variables de entrada al modelo
 X_train = X_train[['Chirps_runoff_acum','Persiann_runoff_acum',
                    'GPM_runoff_acum','Era5_Surface_runoff',
                    'Era5_volumetric_soil_water_layer_1',
@@ -54,22 +54,22 @@ X_test = X_test[['Chirps_runoff_acum','Persiann_runoff_acum',
                  'Era5_volumetric_soil_water_layer_3',
                  'Era5_volumetric_soil_water_layer_4']]
 
-#Normalizing the data
+#Normalizacion
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 #Frecuencia en el y_train
-print(y_train.value_counts()) #456 labels [1]
+print(y_train.value_counts())
 
 #Frecuencia en el y_test
-print(y_test.value_counts()) #48 labels [1]
+print(y_test.value_counts())
 
 #Se separa el 20% para cv
 X_train, X_cv, y_train, y_cv = train_test_split(X_train, y_train, test_size=0.2, random_state=5)
 #Frecuencia en el y_cv
-print(y_cv.value_counts()) #48 labels [1]
+print(y_cv.value_counts())
 #%%
 #===================================================================================================================
 # Se define el modelo y se llama el modelo guardado
